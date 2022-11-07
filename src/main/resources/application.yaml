@@ -1,5 +1,7 @@
 server:
   port: 8081
+  servlet:
+    context-path: /gw
   
 spring:
   application:
@@ -8,16 +10,19 @@ spring:
     gateway:
       routes:
         - id: login
-          uri: http://localhost:8080
+          uri: http://localhost:8080/
           predicates:
           - Path= /api/**
       discovery:
         locator:
-          enabled: true     
+          enabled: true
+
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8082/eureka
+      defaultZone: http://localhost:8082/eureka/eureka
   instance:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 30
