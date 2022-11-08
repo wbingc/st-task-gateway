@@ -17,11 +17,11 @@ public class PrePostGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         //LOGGER.info("Pre-filter: Forwarding API calls to : " + exchange.getRequest().getPath());
-        LOGGER.getLogger().info("Pre-filter: Forwarding API calls to : "  + exchange.getRequest().getPath());
+       // LOGGER.getLogger().info("Pre-filter: Forwarding API calls to : "  + exchange.getRequest().getPath());
         return chain.filter(exchange)
                 .then(Mono.fromRunnable( () -> {
                     //LOGGER.info("Post-filter: Forwarding result back to client.");
-                    LOGGER.getLogger().info("Post-filter: Forwarding result back to client.");
+                    //LOGGER.getLogger().info("Post-filter: Forwarding result back to client.");
                 }));
     }
 
